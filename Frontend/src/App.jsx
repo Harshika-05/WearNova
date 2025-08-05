@@ -8,6 +8,7 @@ function App() {
     <>
     <h1>hello WearNova</h1>
     <h1>hii</h1>
+    <h1>we are working on Wearnova</h1>
     </>
   )
 }
