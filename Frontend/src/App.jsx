@@ -7,6 +7,7 @@ function App() {
   return (
     <>
     <h1>hello WearNova</h1>
+    <h1>hii</h1>
     </>
   )
 }
