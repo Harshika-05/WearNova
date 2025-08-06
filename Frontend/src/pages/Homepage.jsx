@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ShoppingBag, Heart, Star, ArrowRight, Menu, X, Instagram, Twitter, Facebook, Search } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import logoImage from '../assets/image-removebg-preview.png'
 import '../App.css'
 
@@ -203,8 +204,6 @@ function Homepage() {
           <div className="nav-links">
             <a href="#home">Home</a>
             <a href="#shop">Shop</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
           </div>
 
           <div className="nav-actions">
@@ -222,20 +221,24 @@ function Homepage() {
             >
               <ShoppingBag size={20} />
             </motion.button>
-            <motion.button 
-              className="auth-btn login-btn"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Login
-            </motion.button>
-            <motion.button 
-              className="auth-btn signup-btn"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Sign Up
-            </motion.button>
+            <Link to="/login">
+              <motion.button 
+                className="auth-btn login-btn"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Login
+              </motion.button>
+            </Link>
+            <Link to="/signup">
+              <motion.button 
+                className="auth-btn signup-btn"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Sign Up
+              </motion.button>
+            </Link>
             <motion.button 
               className="menu-btn"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -260,11 +263,13 @@ function Homepage() {
           >
             <a href="#home">Home</a>
             <a href="#shop">Shop</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
             <div className="mobile-auth">
-              <button className="auth-btn login-btn">Login</button>
-              <button className="auth-btn signup-btn">Sign Up</button>
+              <Link to="/login">
+                <button className="auth-btn login-btn">Login</button>
+              </Link>
+              <Link to="/signup">
+                <button className="auth-btn signup-btn">Sign Up</button>
+              </Link>
             </div>
           </motion.div>
         )}
@@ -445,8 +450,8 @@ function Homepage() {
           <div className="footer-section">
             <h4>Quick Links</h4>
             <a href="#shop">Shop</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
           </div>
           
           <div className="footer-section">

@@ -1,26 +1,13 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Eye, EyeOff, Mail, Lock, User, ArrowLeft, Instagram, Twitter, Facebook } from 'lucide-react'
+import { Eye, EyeOff, Mail, Lock, ArrowLeft, Instagram, Twitter, Facebook } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-function Signup() {
+function Login() {
   const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  })
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -29,8 +16,8 @@ function Signup() {
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false)
-      console.log('Signup attempt:', formData)
-      // Add your signup logic here
+      console.log('Login attempt:', { email, password })
+      // Add your login logic here
     }, 2000)
   }
 
@@ -70,7 +57,7 @@ function Signup() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              Join WearNova
+              Welcome Back
             </motion.h1>
             <motion.p 
               className="auth-subtitle"
@@ -78,61 +65,24 @@ function Signup() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              Create your account and start your fashion journey
+              Sign in to your WearNova account
             </motion.p>
           </div>
 
           <form onSubmit={handleSubmit} className="auth-form">
             <motion.div 
-              className="form-row"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 }}
-            >
-              <div className="form-group">
-                <div className="input-container">
-                  <User size={20} className="input-icon" />
-                  <input
-                    type="text"
-                    name="firstName"
-                    placeholder="First name"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    required
-                    className="auth-input"
-                  />
-                </div>
-              </div>
-              <div className="form-group">
-                <div className="input-container">
-                  <User size={20} className="input-icon" />
-                  <input
-                    type="text"
-                    name="lastName"
-                    placeholder="Last name"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
-                    className="auth-input"
-                  />
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div 
               className="form-group"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 0.5 }}
             >
               <div className="input-container">
                 <Mail size={20} className="input-icon" />
                 <input
                   type="email"
-                  name="email"
                   placeholder="Email address"
-                  value={formData.email}
-                  onChange={handleChange}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   className="auth-input"
                 />
@@ -143,16 +93,15 @@ function Signup() {
               className="form-group"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.7 }}
+              transition={{ delay: 0.6 }}
             >
               <div className="input-container">
                 <Lock size={20} className="input-icon" />
                 <input
                   type={showPassword ? "text" : "password"}
-                  name="password"
                   placeholder="Password"
-                  value={formData.password}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   className="auth-input"
                 />
@@ -169,52 +118,19 @@ function Signup() {
             </motion.div>
 
             <motion.div 
-              className="form-group"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8 }}
-            >
-              <div className="input-container">
-                <Lock size={20} className="input-icon" />
-                <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  name="confirmPassword"
-                  placeholder="Confirm password"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  required
-                  className="auth-input"
-                />
-                <motion.button
-                  type="button"
-                  className="password-toggle"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                </motion.button>
-              </div>
-            </motion.div>
-
-            <motion.div 
               className="form-options"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.9 }}
+              transition={{ delay: 0.7 }}
             >
               <label className="checkbox-container">
-                <input type="checkbox" required />
+                <input type="checkbox" />
                 <span className="checkmark"></span>
-                I agree to the{' '}
-                <Link to="/terms" className="terms-link">
-                  Terms of Service
-                </Link>{' '}
-                and{' '}
-                <Link to="/privacy" className="terms-link">
-                  Privacy Policy
-                </Link>
+                Remember me
               </label>
+              <Link to="/forgot-password" className="forgot-link">
+                Forgot password?
+              </Link>
             </motion.div>
 
             <motion.button
@@ -225,7 +141,7 @@ function Signup() {
               whileTap={{ scale: 0.98 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
+              transition={{ delay: 0.8 }}
             >
               {isLoading ? (
                 <motion.div 
@@ -234,7 +150,7 @@ function Signup() {
                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                 />
               ) : (
-                "Create Account"
+                "Sign In"
               )}
             </motion.button>
           </form>
@@ -243,7 +159,7 @@ function Signup() {
             className="divider"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.1 }}
+            transition={{ delay: 0.9 }}
           >
             <span>or continue with</span>
           </motion.div>
@@ -252,7 +168,7 @@ function Signup() {
             className="social-auth"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2 }}
+            transition={{ delay: 1 }}
           >
             <motion.button 
               className="social-btn google-btn"
@@ -276,12 +192,12 @@ function Signup() {
             className="auth-footer"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.3 }}
+            transition={{ delay: 1.1 }}
           >
             <p>
-              Already have an account?{' '}
-              <Link to="/login" className="auth-link">
-                Sign in
+              Don't have an account?{' '}
+              <Link to="/signup" className="auth-link">
+                Sign up
               </Link>
             </p>
           </motion.div>
@@ -291,4 +207,4 @@ function Signup() {
   )
 }
 
-export default Signup;
+export default Login
