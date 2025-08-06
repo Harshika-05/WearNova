@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ShoppingBag, Heart, Star, ArrowRight, Menu, X, Instagram, Twitter, Facebook } from 'lucide-react'
+import { ShoppingBag, Heart, Star, ArrowRight, Menu, X, Instagram, Twitter, Facebook, Search } from 'lucide-react'
 import logoImage from '../assets/image-removebg-preview.png'
 
 function Homepage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [isSearchFocused, setIsSearchFocused] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
@@ -15,6 +17,34 @@ function Homepage() {
     }, 4000)
     return () => clearInterval(interval)
   }, [])
+
+  const defaultSearchItems = [
+    "Anime Print",
+    "Cartoon Print",
+    "Neon Street",
+    "Cyberpunk Style",
+    "Retro Fashion",
+    "Y2K Aesthetic"
+  ]
+
+  const filteredSearchItems = defaultSearchItems.filter(item =>
+    item.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault()
+    if (searchQuery.trim()) {
+      console.log('Searching for:', searchQuery)
+      // Add your search logic here
+    }
+  }
+
+  const handleSearchItemClick = (item) => {
+    setSearchQuery(item)
+    setIsSearchFocused(false)
+    console.log('Selected search item:', item)
+    // Add your search logic here
+  }
 
   const products = [
     {
@@ -90,6 +120,83 @@ function Homepage() {
             >
               WearNova
             </motion.h1>
+          </div>
+          
+          <div className="nav-search">
+            <form onSubmit={handleSearchSubmit} className="search-form">
+              <div className="search-container">
+                <Search size={20} className="search-icon" />
+                <input
+                  type="text"
+                  placeholder="Search anime print, cartoon print..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => setIsSearchFocused(true)}
+                  className="search-input"
+                />
+                {searchQuery && (
+                  <motion.button
+                    type="button"
+                    className="clear-search"
+                    onClick={() => setSearchQuery('')}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <X size={16} />
+                  </motion.button>
+                )}
+              </div>
+              
+              <AnimatePresence>
+                {isSearchFocused && (searchQuery || filteredSearchItems.length > 0) && (
+                  <motion.div 
+                    className="search-dropdown glass"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {searchQuery ? (
+                      filteredSearchItems.length > 0 ? (
+                        filteredSearchItems.map((item, index) => (
+                          <motion.div
+                            key={index}
+                            className="search-item"
+                            onClick={() => handleSearchItemClick(item)}
+                            whileHover={{ backgroundColor: 'rgba(255, 107, 157, 0.1)' }}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.05 }}
+                          >
+                            <Search size={16} />
+                            <span>{item}</span>
+                          </motion.div>
+                        ))
+                      ) : (
+                        <div className="search-item no-results">
+                          <span>No results found</span>
+                        </div>
+                      )
+                    ) : (
+                      defaultSearchItems.map((item, index) => (
+                        <motion.div
+                          key={index}
+                          className="search-item"
+                          onClick={() => handleSearchItemClick(item)}
+                          whileHover={{ backgroundColor: 'rgba(255, 107, 157, 0.1)' }}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                        >
+                          <Search size={16} />
+                          <span>{item}</span>
+                        </motion.div>
+                      ))
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </form>
           </div>
           
           <div className="nav-links">
