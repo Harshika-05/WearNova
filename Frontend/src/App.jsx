@@ -1,20 +1,29 @@
-import { useState } from 'react'
-import './App.css'
+// import { useState, useEffect } from 'react'
+// import { motion, AnimatePresence } from 'framer-motion'
+// import { ShoppingBag, Heart, Star, ArrowRight, Menu, X, Instagram, Twitter, Facebook } from 'lucide-react'
+// import './App.css'
+
+// function App() {
+ 
+// // >>>>>>> c8e7110e8dbdb29b86e0c87933d26b852db98fdd
+  
+// }
+
+// export default App
+
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/home';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-    <h1>hello WearNova</h1>
-    <h1>hii</h1>
-<<<<<<< HEAD
-    <h1>hii shreya</h1>
-=======
-    <h1>we are working on Wearnova</h1>
->>>>>>> d4a62cdbd6486b7e6813f345da12ecbc85c76de5
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
+
