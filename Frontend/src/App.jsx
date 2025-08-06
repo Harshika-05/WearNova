@@ -1,3 +1,4 @@
+// <<<<<<< HEAD
 // import { useState, useEffect } from 'react'
 // import { motion, AnimatePresence } from 'framer-motion'
 // import { ShoppingBag, Heart, Star, ArrowRight, Menu, X, Instagram, Twitter, Facebook } from 'lucide-react'
@@ -13,16 +14,27 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/home';
+import Homepage from './pages/Homepage';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Homepage />} />
       </Routes>
     </Router>
   );
+// =======
+// import Homepage from './pages/Homepage'
+// import './App.css'
+
+// function App() {
+//   return (
+//     <div className="app">
+//       <Homepage />
+//     </div>
+//   )
+// >>>>>>> 5ffe39c94a15e0a3d111a5c23bbe85452bce9439
 }
 
 export default App;
