@@ -8,7 +8,11 @@ function App() {
     <>
     <h1>hello WearNova</h1>
     <h1>hii</h1>
+<<<<<<< HEAD
     <h1>hii shreya</h1>
+=======
+    <h1>we are working on Wearnova</h1>
+>>>>>>> d4a62cdbd6486b7e6813f345da12ecbc85c76de5
     </>
   )
 }
