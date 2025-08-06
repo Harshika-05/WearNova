@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ShoppingBag, Heart, Star, ArrowRight, Menu, X, Instagram, Twitter, Facebook } from 'lucide-react'
+import logoImage from '../assets/image-removebg-preview.png'
 
 function Homepage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -74,13 +75,22 @@ function Homepage() {
         transition={{ duration: 0.8 }}
       >
         <div className="nav-content">
-          <motion.h1 
-            className="logo text-gradient"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            WearNova
-          </motion.h1>
+          <div className="nav-brand">
+            <motion.img 
+              src={logoImage} 
+              alt="WearNova Logo" 
+              className="nav-logo-image"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            />
+            <motion.h1 
+              className="logo text-gradient"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              WearNova
+            </motion.h1>
+          </div>
           
           <div className="nav-links">
             <a href="#home">Home</a>
