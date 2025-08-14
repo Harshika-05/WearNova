@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ShoppingBag, Heart, Star, ArrowRight, Menu, X, Instagram, Twitter, Facebook, Search } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import logoImage from '../assets/image-removebg-preview.png'
+import '../App.css'
 
 function Homepage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
