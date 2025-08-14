@@ -99,10 +99,9 @@ function Login() {
                 <Lock size={20} className="input-icon" />
                 <input
                   type={showPassword ? "text" : "password"}
-                  name="password"
                   placeholder="Password"
-                  value={formData.password}
-                  onChange={handleChange}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   className="auth-input"
                 />

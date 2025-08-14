@@ -51,31 +51,31 @@ function Homepage() {
   const products = [
     {
       id: 1,
-      name: "Neon Street Hoodie",
-      price: "$89.99",
-      image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400&h=500&fit=crop",
-      category: "Hoodies"
+      name: "Oversized-Fit",
+      price: "899 Rs",
+      image: "/img1.avif",
+      category: "T-Shirts"
     },
     {
       id: 2,
       name: "Cyberpunk Tee",
-      price: "$49.99",
-      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=500&fit=crop",
+      price: "999 Rs",
+      image: "/img2.avif",
       category: "T-Shirts"
     },
     {
       id: 3,
-      name: "Retro Denim Jacket",
-      price: "$129.99",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=500&fit=crop",
-      category: "Jackets"
+      name: "Cool-Fit oversized T-Shirt",
+      price: "799 Rs",
+      image: "/img3.avif",
+      category: "T-Shirts"
     },
     {
       id: 4,
-      name: "Y2K Cargo Pants",
-      price: "$79.99",
-      image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&h=500&fit=crop",
-      category: "Pants"
+      name: "Loved by all",
+      price: "799 Rs",
+      image: "/img4.avif",
+      category: "T-Shirts"
     }
   ]
 
