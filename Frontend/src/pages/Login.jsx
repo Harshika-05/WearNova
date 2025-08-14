@@ -99,9 +99,10 @@ function Login() {
                 <Lock size={20} className="input-icon" />
                 <input
                   type={showPassword ? "text" : "password"}
+                  name="password"
                   placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={formData.password}
+                  onChange={handleChange}
                   required
                   className="auth-input"
                 />
@@ -175,7 +176,7 @@ function Login() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" />
+              <img src="/google.png" alt="Google" />
               Google
             </motion.button>
             <motion.button 
