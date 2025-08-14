@@ -94,29 +94,16 @@ function Signup() {
                   <User size={20} className="input-icon" />
                   <input
                     type="text"
-                    name="firstName"
-                    placeholder="First name"
-                    value={formData.firstName}
+                    name="fullName"
+                    placeholder="Full name"
+                    value={formData.fullName}
                     onChange={handleChange}
                     required
                     className="auth-input"
                   />
                 </div>
               </div>
-              <div className="form-group">
-                <div className="input-container">
-                  <User size={20} className="input-icon" />
-                  <input
-                    type="text"
-                    name="lastName"
-                    placeholder="Last name"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
-                    className="auth-input"
-                  />
-                </div>
-              </div>
+              
             </motion.div>
 
             <motion.div 
@@ -291,4 +278,4 @@ function Signup() {
   )
 }
 
-export default Signup;
+export default Signup
