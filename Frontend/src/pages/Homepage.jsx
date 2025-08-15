@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ShoppingBag, Heart, Star, ArrowRight, Menu, X, Instagram, Twitter, Facebook, Search } from 'lucide-react'
+import { ShoppingBag, Heart, Star, ArrowRight, Menu, X, Instagram, Twitter, Facebook, Search, Check } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import logoImage from '../assets/image-removebg-preview.png'
+import { useCart } from '../context/CartContext'
 import '../App.css'
 
 function Homepage() {
@@ -11,6 +12,8 @@ function Homepage() {
   const [isVisible, setIsVisible] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [isSearchFocused, setIsSearchFocused] = useState(false)
+  const [addedItems, setAddedItems] = useState({})
+  const { addToCart, getCartCount } = useCart()
 
   useEffect(() => {
     setIsVisible(true)
@@ -48,6 +51,16 @@ function Homepage() {
     // Add your search logic here
   }
 
+  const handleAddToCart = (product) => {
+    addToCart(product)
+    setAddedItems(prev => ({ ...prev, [product.id]: true }))
+    
+    // Reset the added state after 2 seconds
+    setTimeout(() => {
+      setAddedItems(prev => ({ ...prev, [product.id]: false }))
+    }, 2000)
+  }
+
   const products = [
     {
       id: 1,
@@ -75,6 +88,20 @@ function Homepage() {
       name: "Loved by all",
       price: "799 Rs",
       image: "/img4.avif",
+      category: "T-Shirts"
+    },
+    {
+      id: 5,
+      name: "Girly pop Print Collection",
+      price: "849 Rs",
+      image: "/umm2.jpg",
+      category: "T-Shirts"
+    },
+    {
+      id: 6,
+      name: "Retro Gaming Tee",
+      price: "949 Rs",
+      image: "/umm.jpg",
       category: "T-Shirts"
     }
   ]
@@ -214,13 +241,25 @@ function Homepage() {
             >
               <Heart size={20} />
             </motion.button>
-            <motion.button 
-              className="icon-btn"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <ShoppingBag size={20} />
-            </motion.button>
+            <Link to="/cart">
+              <motion.button 
+                className="icon-btn cart-icon-btn"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ShoppingBag size={20} />
+                {getCartCount() > 0 && (
+                  <motion.span 
+                    className="cart-badge"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", stiffness: 500 }}
+                  >
+                    {getCartCount()}
+                  </motion.span>
+                )}
+              </motion.button>
+            </Link>
             <Link to="/login">
               <motion.button 
                 className="auth-btn login-btn"
@@ -263,6 +302,7 @@ function Homepage() {
           >
             <a href="#home">Home</a>
             <a href="#shop">Shop</a>
+            <Link to="/cart">Cart</Link>
             <div className="mobile-auth">
               <Link to="/login">
                 <button className="auth-btn login-btn">Login</button>
@@ -368,13 +408,18 @@ function Homepage() {
                   >
                     <Heart size={20} />
                   </motion.button>
-                  <motion.button 
-                    className="add-to-cart-btn"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <ShoppingBag size={20} />
-                  </motion.button>
+                                     <motion.button 
+                     className={`add-to-cart-btn ${addedItems[product.id] ? 'added' : ''}`}
+                     onClick={() => handleAddToCart(product)}
+                     whileHover={{ scale: 1.05 }}
+                     whileTap={{ scale: 0.95 }}
+                   >
+                     {addedItems[product.id] ? (
+                       <Check size={20} />
+                     ) : (
+                       <ShoppingBag size={20} />
+                     )}
+                   </motion.button>
                 </div>
               </div>
               <div className="product-info">
