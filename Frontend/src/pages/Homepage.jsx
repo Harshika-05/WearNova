@@ -203,7 +203,7 @@ function Homepage() {
           
           <div className="nav-links">
             <a href="#home">Home</a>
-            <a href="#shop">Shop</a>
+            <Link to="/tshirt">Shop</Link>
           </div>
 
           <div className="nav-actions">
@@ -262,7 +262,7 @@ function Homepage() {
             transition={{ duration: 0.3 }}
           >
             <a href="#home">Home</a>
-            <a href="#shop">Shop</a>
+            <Link to="/tshirt">Shop</Link>
             <div className="mobile-auth">
               <Link to="/login">
                 <button className="auth-btn login-btn">Login</button>
@@ -296,13 +296,15 @@ function Homepage() {
             <p className="hero-subtitle">
               {heroSlides[currentSlide].subtitle}
             </p>
-            <motion.button 
-              className="cta-btn"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(255, 107, 157, 0.5)" }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Shop Now <ArrowRight size={20} />
-            </motion.button>
+            <Link to="/tshirt">
+              <motion.button 
+                className="cta-btn"
+                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(255, 107, 157, 0.5)" }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Shop Now <ArrowRight size={20} />
+              </motion.button>
+            </Link>
           </motion.div>
 
           <motion.div 
@@ -358,36 +360,40 @@ function Homepage() {
               viewport={{ once: true }}
               whileHover={{ y: -10 }}
             >
-              <div className="product-image">
-                <img src={product.image} alt={product.name} />
-                <div className="product-overlay">
-                  <motion.button 
-                    className="wishlist-btn"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <Heart size={20} />
-                  </motion.button>
-                  <motion.button 
-                    className="add-to-cart-btn"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <ShoppingBag size={20} />
-                  </motion.button>
+              <Link to="/tshirt" className="product-link">
+                <div className="product-image">
+                  <img src={product.image} alt={product.name} />
+                  <div className="product-overlay">
+                    <motion.button 
+                      className="wishlist-btn"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      <Heart size={20} />
+                    </motion.button>
+                    <motion.button 
+                      className="add-to-cart-btn"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={(e) => e.preventDefault()}
+                    >
+                      <ShoppingBag size={20} />
+                    </motion.button>
+                  </div>
                 </div>
-              </div>
-              <div className="product-info">
-                <span className="product-category">{product.category}</span>
-                <h3 className="product-name">{product.name}</h3>
-                <div className="product-rating">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} size={16} fill="#FFE66D" />
-                  ))}
-                  <span>(4.8)</span>
+                <div className="product-info">
+                  <span className="product-category">{product.category}</span>
+                  <h3 className="product-name">{product.name}</h3>
+                  <div className="product-rating">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star key={star} size={16} fill="#FFE66D" />
+                    ))}
+                    <span>(4.8)</span>
+                  </div>
+                  <p className="product-price">{product.price}</p>
                 </div>
-                <p className="product-price">{product.price}</p>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -449,7 +455,7 @@ function Homepage() {
           
           <div className="footer-section">
             <h4>Quick Links</h4>
-            <a href="#shop">Shop</a>
+            <Link to="/tshirt">Shop</Link>
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
           </div>
