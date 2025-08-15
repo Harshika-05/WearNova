@@ -7,8 +7,7 @@ function Signup() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    fullName: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -94,29 +93,16 @@ function Signup() {
                   <User size={20} className="input-icon" />
                   <input
                     type="text"
-                    name="firstName"
-                    placeholder="First name"
-                    value={formData.firstName}
+                    name="fullName"
+                    placeholder="Full name"
+                    value={formData.fullName}
                     onChange={handleChange}
                     required
                     className="auth-input"
                   />
                 </div>
               </div>
-              <div className="form-group">
-                <div className="input-container">
-                  <User size={20} className="input-icon" />
-                  <input
-                    type="text"
-                    name="lastName"
-                    placeholder="Last name"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
-                    className="auth-input"
-                  />
-                </div>
-              </div>
+              
             </motion.div>
 
             <motion.div 
@@ -259,7 +245,7 @@ function Signup() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" />
+              <img src="/google.png" alt="Google" />
               Google
             </motion.button>
             <motion.button 
