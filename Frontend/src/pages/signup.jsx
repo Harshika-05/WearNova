@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Eye, EyeOff, Mail, Lock, User, ArrowLeft, Instagram, Twitter, Facebook } from 'lucide-react'
-import { Link } from 'react-router-dom' 
+import { Link } from 'react-router-dom'
 
 function Signup() {
   const [showPassword, setShowPassword] = useState(false)
@@ -33,7 +33,6 @@ function Signup() {
       // Add your signup logic here
     }, 2000)
   }
-
 
   return (
     <div className="auth-page">
@@ -292,4 +291,4 @@ function Signup() {
   )
 }
 
-export default Signup;
+export default Signup
