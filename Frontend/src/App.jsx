@@ -4,6 +4,7 @@ import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import Signup from './pages/signup';
 import Cart from './pages/Cart';
+import TshirtDetail from './pages/TshirtDetail';
 import { CartProvider } from './context/CartContext';
 import './App.css';
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/tshirt/:id" element={<TshirtDetail />} />
         </Routes>
       </Router>
     </CartProvider>

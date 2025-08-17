@@ -65,42 +65,42 @@ function Homepage() {
     {
       id: 1,
       name: "Oversized-Fit",
-      price: "899 Rs",
+      price: 899,
       image: "/img1.avif",
       category: "T-Shirts"
     },
     {
       id: 2,
       name: "Cyberpunk Tee",
-      price: "999 Rs",
+      price: 999,
       image: "/img2.avif",
       category: "T-Shirts"
     },
     {
       id: 3,
       name: "Cool-Fit oversized T-Shirt",
-      price: "799 Rs",
+      price: 799,
       image: "/img3.avif",
       category: "T-Shirts"
     },
     {
       id: 4,
       name: "Loved by all",
-      price: "799 Rs",
+      price: 799,
       image: "/img4.avif",
       category: "T-Shirts"
     },
     {
       id: 5,
       name: "Girly pop Print Collection",
-      price: "849 Rs",
+      price: 849,
       image: "/umm2.jpg",
       category: "T-Shirts"
     },
     {
       id: 6,
       name: "Retro Gaming Tee",
-      price: "949 Rs",
+      price: 949,
       image: "/umm.jpg",
       category: "T-Shirts"
     }
@@ -399,39 +399,46 @@ function Homepage() {
 
         <div className="products-grid">
           {products.map((product, index) => (
-            <motion.div
-              key={product.id}
-              className="product-card glass hover-glow"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-            >
-              <div className="product-image">
-                <img src={product.image} alt={product.name} />
-                <div className="product-overlay">
-                  <motion.button 
-                    className="wishlist-btn"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <Heart size={20} />
-                  </motion.button>
-                                     <motion.button 
-                     className={`add-to-cart-btn ${addedItems[product.id] ? 'added' : ''}`}
-                     onClick={() => handleAddToCart(product)}
-                     whileHover={{ scale: 1.05 }}
-                     whileTap={{ scale: 0.95 }}
-                   >
-                     {addedItems[product.id] ? (
-                       <Check size={20} />
-                     ) : (
-                       <ShoppingBag size={20} />
-                     )}
-                   </motion.button>
-                   </div>
-
+            <Link key={product.id} to={`/tshirt/${product.id}`} style={{ textDecoration: 'none' }}>
+              <motion.div
+                className="product-card glass hover-glow"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10 }}
+              >
+                <div className="product-image">
+                  <img src={product.image} alt={product.name} />
+                  <div className="product-overlay">
+                    <motion.button 
+                      className="wishlist-btn"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                    >
+                      <Heart size={20} />
+                    </motion.button>
+                    <motion.button 
+                      className={`add-to-cart-btn ${addedItems[product.id] ? 'added' : ''}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleAddToCart(product);
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {addedItems[product.id] ? (
+                        <Check size={20} />
+                      ) : (
+                        <ShoppingBag size={20} />
+                      )}
+                    </motion.button>
+                  </div>
                 </div>
                 <div className="product-info">
                   <span className="product-category">{product.category}</span>
@@ -442,9 +449,10 @@ function Homepage() {
                     ))}
                     <span>(4.8)</span>
                   </div>
-                  <p className="product-price">{product.price}</p>
+                  <p className="product-price">{product.price} Rs</p>
                 </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </section>

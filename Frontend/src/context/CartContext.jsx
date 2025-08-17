@@ -30,27 +30,27 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('wearnova-cart', JSON.stringify(cartItems))
   }, [cartItems])
 
-  const addToCart = (product, size = 'M') => {
+  const addToCart = (product, size = 'M', quantity = 1) => {
     setCartItems(prev => {
       const existingItem = prev.find(item => item.id === product.id && item.size === size)
       
       if (existingItem) {
-        // If item already exists, increase quantity
+        // If item already exists, increase quantity by specified amount
         return prev.map(item => 
           item.id === product.id && item.size === size
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantity }
             : item
         )
       } else {
-        // Add new item to cart
+        // Add new item to cart with specified quantity
         const newItem = {
           id: product.id,
           name: product.name,
-          price: parseInt(product.price.replace(/\D/g, '')), // Extract number from "899 Rs"
+          price: product.price,
           image: product.image,
-          category: product.category,
+          category: product.category || 'T-Shirts',
           size: size,
-          quantity: 1
+          quantity: quantity
         }
         return [...prev, newItem]
       }
