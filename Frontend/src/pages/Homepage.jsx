@@ -110,17 +110,23 @@ function Homepage() {
     {
       title: "WearNova",
       subtitle: "Where Style Meets Innovation",
-      gradient: "linear-gradient(135deg, #FF6B9D, #4ECDC4)"
+      gradient: "linear-gradient(135deg, #FF6B9D, #4ECDC4)",
+      image: "/m3.avif",
+      alt: "Stylish oversized t-shirt"
     },
     {
       title: "Gen Z Fashion",
       subtitle: "Express Your Unique Style",
-      gradient: "linear-gradient(135deg, #4ECDC4, #FFE66D)"
+      gradient: "linear-gradient(135deg, #4ECDC4, #FFE66D)",
+      image: "/m2.avif",
+      alt: "Cyberpunk style t-shirt"
     },
     {
       title: "Future is Now",
       subtitle: "Sustainable & Stylish",
-      gradient: "linear-gradient(135deg, #FFE66D, #FF6B9D)"
+      gradient: "linear-gradient(135deg, #FFE66D, #FF6B9D)",
+      image: "/wm1.avif",
+      alt: "Cool fit oversized t-shirt"
     }
   ]
 
@@ -357,8 +363,8 @@ function Homepage() {
           >
             <div className="floating-card glass">
               <img 
-                src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=500&fit=crop" 
-                alt="Fashion Model"
+                src={heroSlides[currentSlide].image} 
+                alt={heroSlides[currentSlide].alt}
                 className="hero-image"
               />
             </div>
