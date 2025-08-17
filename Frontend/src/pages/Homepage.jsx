@@ -393,39 +393,46 @@ function Homepage() {
 
         <div className="products-grid">
           {products.map((product, index) => (
-            <motion.div
-              key={product.id}
-              className="product-card glass hover-glow"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-            >
-              <div className="product-image">
-                <img src={product.image} alt={product.name} />
-                <div className="product-overlay">
-                  <motion.button 
-                    className="wishlist-btn"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <Heart size={20} />
-                  </motion.button>
-                                     <motion.button 
-                     className={`add-to-cart-btn ${addedItems[product.id] ? 'added' : ''}`}
-                     onClick={() => handleAddToCart(product)}
-                     whileHover={{ scale: 1.05 }}
-                     whileTap={{ scale: 0.95 }}
-                   >
-                     {addedItems[product.id] ? (
-                       <Check size={20} />
-                     ) : (
-                       <ShoppingBag size={20} />
-                     )}
-                   </motion.button>
-                   </div>
-
+            <Link key={product.id} to={`/tshirt/${product.id}`} style={{ textDecoration: 'none' }}>
+              <motion.div
+                className="product-card glass hover-glow"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10 }}
+              >
+                <div className="product-image">
+                  <img src={product.image} alt={product.name} />
+                  <div className="product-overlay">
+                    <motion.button 
+                      className="wishlist-btn"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                    >
+                      <Heart size={20} />
+                    </motion.button>
+                    <motion.button 
+                      className={`add-to-cart-btn ${addedItems[product.id] ? 'added' : ''}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleAddToCart(product);
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {addedItems[product.id] ? (
+                        <Check size={20} />
+                      ) : (
+                        <ShoppingBag size={20} />
+                      )}
+                    </motion.button>
+                  </div>
                 </div>
                 <div className="product-info">
                   <span className="product-category">{product.category}</span>
@@ -438,7 +445,8 @@ function Homepage() {
                   </div>
                   <p className="product-price">{product.price}</p>
                 </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </section>
