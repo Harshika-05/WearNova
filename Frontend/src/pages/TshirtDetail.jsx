@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ShoppingBag, Heart, Star, ArrowLeft, Minus, Plus } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ShoppingBag, Heart, Star, ArrowLeft, Minus, Plus, CheckCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import '../App.css';
 import './TshirtDetail.css';
@@ -13,6 +13,8 @@ function TshirtDetail() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState('M');
   const [quantity, setQuantity] = useState(1);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState('');
 
   // Product data
   const products = {
@@ -114,7 +116,16 @@ function TshirtDetail() {
       size: selectedSize,
       quantity: quantity
     };
-    addToCart(cartProduct, selectedSize);
+    addToCart(cartProduct, selectedSize, quantity);
+    
+    // Show notification
+    setNotificationMessage(`${quantity} ${product.name} added to cart!`);
+    setShowNotification(true);
+    
+    // Hide notification after 3 seconds
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000);
   };
 
   const handleBuyNow = () => {
@@ -124,6 +135,21 @@ function TshirtDetail() {
 
   return (
     <div className="tshirt-detail">
+      <AnimatePresence>
+        {showNotification && (
+          <motion.div
+            className="notification"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            transition={{ duration: 0.3 }}
+          >
+            <CheckCircle size={20} />
+            <span>{notificationMessage}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <motion.div 
         className="detail-container"
         initial={{ opacity: 0 }}

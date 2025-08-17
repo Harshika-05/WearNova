@@ -65,42 +65,42 @@ function Homepage() {
     {
       id: 1,
       name: "Oversized-Fit",
-      price: "899 Rs",
+      price: 899,
       image: "/img1.avif",
       category: "T-Shirts"
     },
     {
       id: 2,
       name: "Cyberpunk Tee",
-      price: "999 Rs",
+      price: 999,
       image: "/img2.avif",
       category: "T-Shirts"
     },
     {
       id: 3,
       name: "Cool-Fit oversized T-Shirt",
-      price: "799 Rs",
+      price: 799,
       image: "/img3.avif",
       category: "T-Shirts"
     },
     {
       id: 4,
       name: "Loved by all",
-      price: "799 Rs",
+      price: 799,
       image: "/img4.avif",
       category: "T-Shirts"
     },
     {
       id: 5,
       name: "Girly pop Print Collection",
-      price: "849 Rs",
+      price: 849,
       image: "/umm2.jpg",
       category: "T-Shirts"
     },
     {
       id: 6,
       name: "Retro Gaming Tee",
-      price: "949 Rs",
+      price: 949,
       image: "/umm.jpg",
       category: "T-Shirts"
     }
@@ -449,7 +449,7 @@ function Homepage() {
                     ))}
                     <span>(4.8)</span>
                   </div>
-                  <p className="product-price">{product.price}</p>
+                  <p className="product-price">{product.price} Rs</p>
                 </div>
               </motion.div>
             </Link>
